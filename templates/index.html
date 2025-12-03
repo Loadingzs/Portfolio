@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Profissional | [Seu Nome]</title>
+    <meta name="description" content="Portfólio profissional de [Seu Nome] - [Sua Profissão/Especialidade]">
+    
+    <!-- Pré-conexão para melhor performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS será adicionado posteriormente -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Favicon (substitua pelo seu) -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body>
+    <!-- Navegação Principal -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="#" class="navbar__logo">Portfólio<span class="navbar__logo--highlight">.</span></a>
+            
+            <button class="navbar__toggle" aria-label="Menu de navegação">
+                <span class="navbar__toggle-bar"></span>
+                <span class="navbar__toggle-bar"></span>
+                <span class="navbar__toggle-bar"></span>
+            </button>
+            
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="#home" class="navbar__link active">Início</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#sobre" class="navbar__link">Sobre</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#habilidades" class="navbar__link">Habilidades</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#portfolio" class="navbar__link">Portfólio</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#experiencia" class="navbar__link">Experiência</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#contato" class="navbar__link">Contato</a>
+                </li>
+            </ul>
+            
+            <div class="navbar__theme-toggle">
+                <button class="theme-toggle" aria-label="Alternar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Seção Hero / Início -->
+        <section id="home" class="hero">
+            <div class="hero__content container">
+                <div class="hero__text">
+                    <p class="hero__greeting">Olá, eu sou</p>
+                    <h1 class="hero__name">Maykon Dias</h1>
+                    <h2 class="hero__title">Desenvolvedor Full Stack Júnior</h2>
+                    <p class="hero__description">
+                        Desenvolvedor Back-end em formação, dedicado a criar sistemas funcionais e bem estruturados. Trabalhei em projetos acadêmicos, incluindo um E-commerce de Farmácia apresentado no CONICT, onde desenvolvi a parte lógica e o fluxo do sistema. Busco sempre aprender e evoluir para construir soluções cada vez melhores.
+                    
+                    <div class="hero__buttons">
+                        <a href="#contato" class="btn btn--primary">Entre em Contato</a>
+                        <a href="#portfolio" class="btn btn--outline">Veja Meu Trabalho</a>
+                    </div>
+                    
+                    <div class="hero__social">
+                        <a href="https://www.linkedin.com/in/maykondias/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/Loadingzs" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.instagram.com/maykonzf" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+
+            </div>
+        </section>
+
+        <!-- Seção Sobre -->
+        <section id="sobre" class="section about">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Sobre Mim</h2>
+                    <p class="section__subtitle">Conheça minha trajetória e paixão</p>
+                </div>
+                
+                <div class="about__content">
+                    <div class="about__image">
+                        <div class="image-placeholder about-image">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="about__text">
+                        <h3 class="about__title">Minha Jornada Profissional</h3>
+                        <p>
+                            Sou um profissional dedicado e apaixonado por tecnologia e desenvolvimento, sempre em busca de evolução pessoal e técnica. Comecei minha jornada explorando ferramentas, resolvendo problemas e criando pequenos projetos, e desde então venho me aprofundando em soluções práticas, programação e análise lógica.
+                        </p>
+                        <p>
+                           Acredito que o aprendizado constante é o que move a carreira de qualquer pessoa. Meu foco está em desenvolvimento de sistemas, análise de dados e resolução de problemas, áreas nas quais tenho desenvolvido experiência e ampliado meus conhecimentos. Já trabalhei em projetos acadêmicos, pessoais e colaborativos, sempre buscando entregar resultados claros, organizados e funcionais.
+                        </p>
+                        
+                        <div class="about__info">
+                            <div class="info-item">
+                                <span class="info-label">Nome:</span>
+                                <span class="info-value">Maykon Dias</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Email:</span>
+                                <span class="info-value">maykon07dias@gmail.com</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Localização:</span>
+                                <span class="info-value">Campinas-SP</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Disponibilidade:</span>
+                                <span class="info-value">Aberto a novas oportunidades</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="btn btn--primary">Baixar Currículo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Habilidades -->
+        <section id="habilidades" class="section skills">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Minhas Habilidades</h2>
+                    <p class="section__subtitle">Conhecimentos técnicos e profissionais</p>
+                </div>
+                
+                <div class="skills__grid">
+                    <div class="skill-category">
+                        <h3 class="skill-category__title">Técnicas</h3>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Desenvolvimento Web</span>
+                                <span class="skill-percentage">65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="95"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">UI/UX Design</span>
+                                <span class="skill-percentage">60%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="90"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percentage">65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="95"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-percentage">68%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="88"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3 class="skill-category__title">Profissionais</h3>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Comunicação</span>
+                                <span class="skill-percentage">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="92"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Trabalho em Equipe</span>
+                                <span class="skill-percentage">94%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="94"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Resolução de Problemas</span>
+                                <span class="skill-percentage">96%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="96"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Portfólio -->
+        <section id="portfolio" class="section portfolio">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Meu Portfólio</h2>
+                    <p class="section__subtitle">Alguns dos meus projetos mais recentes</p>
+                </div>
+                
+                <div class="portfolio__filter">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="web">Web</button>
+                    <button class="filter-btn" data-filter="design">Design</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile</button>
+                </div>
+                
+                <div class="portfolio__grid">
+                    <div class="portfolio-item" data-category="web">
+                        <div class="portfolio-item__image">
+                            <div class="image-placeholder portfolio-image">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-item__content">
+                            <h3 class="portfolio-item__title">Projeto Web Moderno</h3>
+                            <p class="portfolio-item__description">
+                                Desenvolvimento de uma plataforma web responsiva com foco em performance e experiência do usuário.
+                            </p>
+                            <div class="portfolio-item__tags">
+                                <span class="tag">HTML5</span>
+                                <span class="tag">CSS3</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="design">
+                        <div class="portfolio-item__image">
+                            <div class="image-placeholder portfolio-image">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-item__content">
+                            <h3 class="portfolio-item__title">Em breve</h3>
+                            <p class="portfolio-item__description">
+                               Em breve
+                            </p>
+                            <div class="portfolio-item__tags">
+                                <span class="tag">UI Design</span>
+                                <span class="tag">UX Research</span>
+                                <span class="tag">Figma</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="mobile">
+                        <div class="portfolio-item__image">
+                            <div class="image-placeholder portfolio-image">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-item__content">
+                            <h3 class="portfolio-item__title">Aplicativo Fitness (Em breve)</h3>
+                            <p class="portfolio-item__description">
+                                Desenvolvimento de um aplicativo móvel para acompanhamento de atividades físicas e nutrição.
+                            </p>
+                            <div class="portfolio-item__tags">
+                                <span class="tag">React Native</span>
+                                <span class="tag">Firebase</span>
+                                <span class="tag">API Rest</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio__cta">
+                    <a href="#" class="btn btn--outline">Ver Todos os Projetos</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Experiência -->
+        <section id="experiencia" class="section experience">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Experiência Profissional</h2>
+                    <p class="section__subtitle">Minha jornada e conquistas ao longo dos anos</p>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-item__date">2025 - Novembro</div>
+                        <div class="timeline-item__content">
+                            <h3 class="timeline-item__title">Projeto Acadêmico em Desenvolvimento Web</h3>
+                            <h4 class="timeline-item__subtitle">IFSP - Campinas-SP/CONICT.</h4>
+                            <p class="timeline-item__description">
+                               Participação em projeto acadêmico com foco em desenvolvimento Back-end e Front-end. Apresentação de um E-commerce de Farmácia, envolvendo criação da interface, estrutura do site, funcionalidades básicas de navegação e apresentação técnica para a banca avaliadora. 
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-item__date">2025 - 2026</div>
+                        <div class="timeline-item__content">
+                            <h3 class="timeline-item__title">Em breve</h3>
+                            <h4 class="timeline-item__subtitle">Em breve</h4>
+                            <p class="timeline-item__description">
+                               Em breve
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-item__date">2025 - 2026</div>
+                        <div class="timeline-item__content">
+                            <h3 class="timeline-item__title">Em breve</h3>
+                            <h4 class="timeline-item__subtitle">Em breve</h4>
+                            <p class="timeline-item__description">
+                                Em breve
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Contato -->
+        <section id="contato" class="section contact">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Entre em Contato</h2>
+                    <p class="section__subtitle">Vamos conversar sobre seu próximo projeto</p>
+                </div>
+                
+                <div class="contact__content">
+                    <div class="contact__info">
+                        <h3 class="contact__title">Vamos trabalhar juntos!</h3>
+                        <p class="contact__description">
+                            Estou sempre aberto a discutir novas oportunidades, projetos interessantes ou possíveis colaborações.
+                        </p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-detail">
+                                <div class="contact-detail__icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-detail__content">
+                                    <h4>Email</h4>
+                                    <p>maykon07dias@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-detail">
+                                <div class="contact-detail__icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-detail__content">
+                                    <h4>Telefone</h4>
+                                    <p>+55 (19) 99209-4465</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-detail">
+                                <div class="contact-detail__icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-detail__content">
+                                    <h4>Localização</h4>
+                                    <p>Campinas-SP, Brasil</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="contact__form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Seu nome" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Seu email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Assunto">
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" placeholder="Sua mensagem" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn--primary btn--block">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    <a href="#" class="navbar__logo">Portfólio<span class="navbar__logo--highlight">.</span></a>
+                    <p class="footer__tagline">Criando experiências digitais excepcionais</p>
+                </div>
+                
+                <div class="footer__links">
+                    <h4 class="footer__title">Links Rápidos</h4>
+                    <ul class="footer__menu">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#portfolio">Portfólio</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__social">
+                    <h4 class="footer__title">Conecte-se</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/maykondias/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/Loadingzs" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://x.com/Loadingzsx" class="social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/maykonzf" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="copyright">&copy; <span id="current-year">2025</span> [Maykon]. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Voltar ao Topo -->
+    <button class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript será adicionado posteriormente -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
