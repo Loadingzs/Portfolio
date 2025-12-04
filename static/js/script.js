@@ -437,6 +437,9 @@ function initPortfolioFilter() {
       });
     }
     
+    // Garantir que todos os itens sejam exibidos por padrão ao carregar a página
+    filterPortfolioItems('all');
+
     Logger.info('Filtro de portfólio inicializado');
   } catch (error) {
     Logger.error('Erro ao inicializar filtro de portfólio', error);

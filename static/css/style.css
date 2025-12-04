@@ -666,23 +666,28 @@ body.dark-theme .theme-toggle {
 }
 
 /* ==========================================================================
-   SEÇÃO HERO
+   SEÇÃO HERO (CENTRALIZADA)
    ========================================================================== */
 .hero {
   padding-top: calc(var(--header-height) + var(--spacing-lg));
   padding-bottom: var(--spacing-xl);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - var(--header-height));
 }
 
 .hero__content {
   display: flex;
   align-items: center;
-  gap: var(--spacing-lg);
+  justify-content: center;
+  width: 100%;
+  text-align: center;
 }
 
 .hero__text {
-  flex: 1;
-  animation: fadeInLeft 1s ease-out;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .hero__greeting {
@@ -701,6 +706,7 @@ body.dark-theme .theme-toggle {
   color: transparent;
   animation: gradientShift 8s ease infinite;
   background-size: 200% 200%;
+  line-height: 1.1;
 }
 
 @keyframes gradientShift {
@@ -724,6 +730,8 @@ body.dark-theme .hero__title {
   font-size: 1.1rem;
   margin-bottom: var(--spacing-md);
   max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero__buttons {
@@ -731,11 +739,13 @@ body.dark-theme .hero__title {
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-lg);
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .hero__social {
   display: flex;
   gap: var(--spacing-sm);
+  justify-content: center;
 }
 
 .social-link {
@@ -762,21 +772,7 @@ body.dark-theme .social-link {
 }
 
 .hero__image {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  animation: fadeInRight 1s ease-out, float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-.hero__image .image-placeholder {
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
+  display: none;
 }
 
 /* ==========================================================================
@@ -835,7 +831,7 @@ body.dark-theme .info-value {
 }
 
 /* ==========================================================================
-   SEÇÃO HABILIDADES
+   SEÇÃO HABILIDADES (COM PORCENTAGENS CORRIGIDAS)
    ========================================================================== */
 .skills__grid {
   display: grid;
@@ -896,6 +892,7 @@ body.dark-theme .skill-category__title {
   background-color: var(--light-gray);
   border-radius: 5px;
   overflow: hidden;
+  position: relative;
 }
 
 body.dark-theme .skill-bar {
@@ -908,6 +905,19 @@ body.dark-theme .skill-bar {
   border-radius: 5px;
   width: 0; /* Inicialmente 0 - JavaScript vai animar */
   transition: width 1.5s ease-out;
+  position: relative;
+}
+
+.skill-progress::after {
+  content: attr(data-level) "%";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--white);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
 /* ==========================================================================
@@ -1526,129 +1536,6 @@ body.dark-theme::-webkit-scrollbar-thumb:hover {
 }
 
 /* ==========================================================================
-   RESPONSIVIDADE
-   ========================================================================== */
-@media (max-width: 992px) {
-  h1 { font-size: 3rem; }
-  h2 { font-size: 2.25rem; }
-  
-  .hero__content {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .hero__image {
-    order: -1;
-  }
-  
-  .hero__image .image-placeholder {
-    width: 280px;
-    height: 280px;
-  }
-  
-  .about__content {
-    flex-direction: column;
-  }
-  
-  .contact__content {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar__toggle {
-    display: flex;
-  }
-  
-  .navbar__menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 80%;
-    max-width: 400px;
-    height: 100vh;
-    background-color: var(--white);
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--spacing-md);
-    transition: right var(--transition-normal);
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    padding: var(--spacing-lg);
-  }
-  
-  body.dark-theme .navbar__menu {
-    background-color: var(--dark-card);
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  .navbar__menu.active {
-    right: 0;
-  }
-  
-  .hero__name {
-    font-size: 2.5rem;
-  }
-  
-  .hero__title {
-    font-size: 1.5rem;
-  }
-  
-  .portfolio__grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .timeline::before {
-    left: 20px;
-  }
-  
-  .timeline-item {
-    padding-left: 60px;
-  }
-  
-  .timeline-item__date {
-    width: 50px;
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .section {
-    padding: var(--spacing-lg) 0;
-  }
-  
-  .hero {
-    padding-top: calc(var(--header-height) + var(--spacing-md));
-  }
-  
-  .hero__buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .hero__buttons .btn {
-    width: 100%;
-    max-width: 300px;
-  }
-  
-  .about__info {
-    grid-template-columns: 1fr;
-  }
-  
-  .skills__grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .portfolio__filter {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .filter-btn {
-    width: 100%;
-    max-width: 200px;
-  }
-}
-/* ==========================================================================
    TEMA ESCURO - GARANTIR FUNCIONAMENTO
    ========================================================================== */
 /* Classe para tema escuro */
@@ -1696,4 +1583,193 @@ body.dark-theme {
 
 .theme-toggle:hover i {
   transform: scale(1.1);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 992px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.25rem; }
+  
+  .about__content {
+    flex-direction: column;
+  }
+  
+  .contact__content {
+    flex-direction: column;
+  }
+  
+  .hero__name {
+    font-size: 2.8rem;
+  }
+  
+  .hero__title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar__toggle {
+    display: flex;
+  }
+  
+  .navbar__menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: var(--white);
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--spacing-md);
+    transition: right var(--transition-normal);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-lg);
+  }
+  
+  body.dark-theme .navbar__menu {
+    background-color: var(--dark-card);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .navbar__menu.active {
+    right: 0;
+  }
+  
+  .hero__name {
+    font-size: 2.5rem;
+  }
+  
+  .hero__title {
+    font-size: 1.4rem;
+  }
+  
+  .portfolio__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeline::before {
+    left: 20px;
+  }
+  
+  .timeline-item {
+    padding-left: 60px;
+  }
+  
+  .timeline-item__date {
+    width: 50px;
+    font-size: 0.85rem;
+  }
+  
+  .about__info {
+    grid-template-columns: 1fr;
+  }
+  
+  .skills__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .portfolio__filter {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filter-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .hero__buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero__buttons .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section {
+    padding: var(--spacing-lg) 0;
+  }
+  
+  .hero {
+    padding-top: calc(var(--header-height) + var(--spacing-md));
+  }
+  
+  .hero__name {
+    font-size: 2.2rem;
+  }
+  
+  .hero__title {
+    font-size: 1.2rem;
+  }
+  
+  .hero__description {
+    font-size: 1rem;
+  }
+}
+
+/* ==========================================================================
+   CORREÇÕES PARA CENTRALIZAR O HERO E BARRAS DE HABILIDADE
+   ========================================================================== */
+
+/* Ajuste para telas maiores */
+@media (min-width: 993px) {
+  .hero__content {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero__description {
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero__buttons {
+    justify-content: center;
+  }
+  
+  .hero__social {
+    justify-content: center;
+  }
+}
+
+/* Correção para as porcentagens nas barras de habilidade */
+.skill-progress[data-level="95"] { width: 95%; }
+.skill-progress[data-level="90"] { width: 90%; }
+.skill-progress[data-level="88"] { width: 88%; }
+.skill-progress[data-level="92"] { width: 92%; }
+.skill-progress[data-level="94"] { width: 94%; }
+.skill-progress[data-level="96"] { width: 96%; }
+
+/* Ajuste para o efeito de animação das barras */
+.skill-progress.animated {
+  animation: skillProgressAnimation 1.5s ease-out forwards;
+}
+
+@keyframes skillProgressAnimation {
+  from { width: 0%; }
+  to { width: var(--target-width); }
+}
+
+/* Garantir que o hero ocupe toda a altura da viewport */
+.hero {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
 }
