@@ -31,11 +31,6 @@ Aqui está o README completo com suas imagens incorporadas corretamente:
 
 *Design responsivo com alternância de temas*
 
-### 📱 **Interface Mobile**
-| Tema Claro | Tema Escuro |
-|------------|-------------|
-| ![Mobile Light](https://via.placeholder.com/200x400/f8f9fa/333333?text=Mobile+Light+Theme) | ![Mobile Dark](https://via.placeholder.com/200x400/121212/e0e0e0?text=Mobile+Dark+Theme) |
-
 *Otimizado para dispositivos móveis*
 
 </div>
