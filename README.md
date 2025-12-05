@@ -56,10 +56,10 @@ Portfólio profissional e moderno desenvolvido com **tecnologias web clássicas*
 ## 📸 **Demonstração**
 
 ### Desktop (Tema Claro)
-![Desktop Light Theme](https://via.placeholder.com/800x450/6c63ff/ffffff?text=Desktop+%E2%86%92+Tema+Claro)
+![Desktop Light Theme]([[https://via.placeholder.com/800x450/6c63ff/ffffff?text=Desktop+%E2%86%92+Tema+Claro](https://imgur.com/a/B54QJUl)](https://imgur.com/a/Dw6oxFT))
 
 ### Mobile (Tema Escuro)
-![Mobile Dark Theme](https://via.placeholder.com/350x600/1e1e1e/e0e0e0?text=Mobile+%E2%86%92+Tema+Escuro)
+![Mobile Dark Theme]([https://via.placeholder.com/350x600/1e1e1e/e0e0e0?text=Mobile+%E2%86%92+Tema+Escuro](https://imgur.com/a/portfolio-v1-black-B54QJUl))
 
 ### Seções Principais
 1. **Hero Centralizado** - Apresentação com gradiente animado
