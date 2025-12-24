@@ -1773,3 +1773,207 @@ body.dark-theme {
   display: flex;
   align-items: center;
 }
+
+/* ==========================================================================
+   CORREÇÕES PARA CENTRALIZAR SEÇÃO SOBRE MIM
+   ========================================================================== */
+
+/* Centralizar a seção Sobre Mim */
+#sobre .section__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+#sobre .section__title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: var(--spacing-xs);
+}
+
+#sobre .section__title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+}
+
+#sobre .section__subtitle {
+  color: var(--gray-color);
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Centralizar todo o conteúdo da seção Sobre */
+.about__text {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about__title {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--fs-xl);
+}
+
+.about__info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-sm);
+  margin: var(--spacing-lg) 0;
+  text-align: left;
+  background: var(--white);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+body.dark-theme .about__info {
+  background: var(--dark-card);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-xs);
+}
+
+.info-label {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 2px;
+  font-size: 0.9rem;
+}
+
+.info-value {
+  color: var(--gray-color);
+  font-size: 1rem;
+}
+
+/* Botão da seção Sobre centralizado */
+#sobre .btn {
+  margin-top: var(--spacing-md);
+  display: inline-block;
+}
+
+/* ==========================================================================
+   CORREÇÕES PARA O LAYOUT DO SOBRE
+   ========================================================================== */
+
+/* Ajustar o layout da seção Sobre para mobile */
+@media (max-width: 768px) {
+  .about__info {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .info-item {
+    align-items: center;
+  }
+}
+
+/* ==========================================================================
+   CORREÇÕES PARA BARRAS DE HABILIDADE (VALORES REAIS)
+   ========================================================================== */
+
+/* Ajustar os valores das barras de habilidade conforme seu HTML */
+.skill-progress[data-level="60"] { width: 60%; }
+.skill-progress[data-level="65"] { width: 65%; }
+.skill-progress[data-level="46"] { width: 46%; }
+.skill-progress[data-level="92"] { width: 92%; }
+.skill-progress[data-level="94"] { width: 94%; }
+.skill-progress[data-level="96"] { width: 96%; }
+
+/* ==========================================================================
+   MELHORIAS PARA RESPONSIVIDADE
+   ========================================================================== */
+
+@media (max-width: 576px) {
+  .about__text {
+    padding: 0 var(--spacing-xs);
+  }
+  
+  .about__info {
+    padding: var(--spacing-sm);
+  }
+  
+  #sobre .section__title {
+    font-size: var(--fs-xl);
+  }
+  
+  #sobre .section__subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* ==========================================================================
+   ANIMAÇÃO PARA AS BARRAS DE HABILIDADE
+   ========================================================================== */
+
+@keyframes fillSkillBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--final-width);
+  }
+}
+
+.skill-progress {
+  animation: fillSkillBar 1.5s ease-out forwards;
+}
+
+/* ==========================================================================
+   AJUSTES PARA O BOTÃO DO TEMA
+   ========================================================================== */
+
+.theme-toggle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--light-gray);
+  color: var(--dark-color);
+  transition: all var(--transition-normal);
+  overflow: hidden;
+}
+
+body.dark-theme .theme-toggle {
+  background: var(--dark-card);
+  color: var(--dark-text);
+}
+
+.theme-toggle:hover {
+  background: var(--primary-color);
+  color: var(--white);
+  transform: rotate(180deg) scale(1.1);
+}
+
+.theme-toggle i {
+  transition: transform var(--transition-normal);
+}
+
+/* Mudar o ícone conforme o tema */
+body:not(.dark-theme) .theme-toggle .fa-sun {
+  display: none;
+}
+
+body:not(.dark-theme) .theme-toggle .fa-moon {
+  display: block;
+}
+
+body.dark-theme .theme-toggle .fa-sun {
+  display: block;
+}
+
+body.dark-theme .theme-toggle .fa-moon {
+  display: none;
+}

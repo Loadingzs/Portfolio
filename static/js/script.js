@@ -44,7 +44,11 @@ const DOMCache = {
   currentYear: null,
   contactForm: null,
   skillProgressBars: null,
-  filterButtons: null
+  filterButtons: null,
+  portfolioItems: null,
+  navLinks: null,
+  sections: null,
+  heroElements: null
 };
 
 // ============================================================================
@@ -134,6 +138,9 @@ document.addEventListener('DOMContentLoaded', function() {
   Logger.info('Portfólio inicializado com configurações:', CONFIG);
   Analytics.trackPageView(window.location.pathname);
   
+  // Inicializar tratamento de erros globais
+  initGlobalErrorHandling();
+  
   initCache();
   initTheme();
   initNavigation();
@@ -149,11 +156,29 @@ document.addEventListener('DOMContentLoaded', function() {
   initLoadingScreen();
   trackImportantInteractions();
   
-  // Carregar fontes
-  loadFonts();
+  // Carregar fontes (já estão pré-carregadas no HTML)
+  Logger.info('Fontes configuradas via preload');
   
   Logger.info('Inicialização completa');
 });
+
+// ============================================================================
+// TRATAMENTO DE ERROS GLOBAIS
+// ============================================================================
+function initGlobalErrorHandling() {
+  window.addEventListener('error', function(e) {
+    Logger.error('Erro global capturado', {
+      message: e.message,
+      filename: e.filename,
+      lineno: e.lineno,
+      colno: e.colno
+    });
+  });
+
+  window.addEventListener('unhandledrejection', function(e) {
+    Logger.error('Promise não tratada', e.reason);
+  });
+}
 
 // ============================================================================
 // INICIALIZAÇÃO DO CACHE
@@ -170,8 +195,14 @@ function initCache() {
     DOMCache.skillProgressBars = document.querySelectorAll('.skill-progress');
     DOMCache.filterButtons = document.querySelectorAll('.filter-btn');
     DOMCache.portfolioItems = document.querySelectorAll('.portfolio-item');
+    DOMCache.navLinks = document.querySelectorAll('.navbar__link');
+    DOMCache.sections = document.querySelectorAll('section[id]');
+    DOMCache.heroElements = document.querySelectorAll('.hero__greeting, .hero__name, .hero__title, .hero__description, .hero__buttons, .hero__social');
     
-    Logger.info('Cache DOM inicializado');
+    Logger.info('Cache DOM inicializado', { 
+      elementos: Object.keys(DOMCache).length,
+      portfolioItems: DOMCache.portfolioItems?.length || 0 
+    });
   } catch (error) {
     Logger.error('Erro ao inicializar cache DOM', error);
   }
@@ -198,9 +229,8 @@ function initTheme() {
   applyTheme();
   
   // Configurar botão de alternância
-  const themeToggle = document.querySelector('.theme-toggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
+  if (DOMCache.themeToggle) {
+    DOMCache.themeToggle.addEventListener('click', toggleTheme);
     updateThemeIcon();
     Logger.info('Tema inicializado e botão configurado');
   }
@@ -224,9 +254,15 @@ function applyTheme() {
 }
 
 function updateThemeIcon() {
-  const icon = document.querySelector('.theme-toggle i');
-  if (icon) {
-    icon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+  const moonIcon = DOMCache.themeToggle?.querySelector('.fa-moon');
+  const sunIcon = DOMCache.themeToggle?.querySelector('.fa-sun');
+  
+  if (currentTheme === 'dark') {
+    if (moonIcon) moonIcon.style.display = 'none';
+    if (sunIcon) sunIcon.style.display = 'block';
+  } else {
+    if (moonIcon) moonIcon.style.display = 'block';
+    if (sunIcon) sunIcon.style.display = 'none';
   }
 }
 
@@ -239,8 +275,7 @@ function initNavigation() {
     if (DOMCache.navbarToggle && DOMCache.navbarMenu) {
       DOMCache.navbarToggle.addEventListener('click', toggleMobileMenu);
       
-      const navLinks = document.querySelectorAll('.navbar__link');
-      navLinks.forEach(link => {
+      DOMCache.navLinks.forEach(link => {
         link.addEventListener('click', closeMobileMenu);
       });
     }
@@ -307,22 +342,22 @@ function initSmoothScroll() {
 }
 
 function updateActiveNavLink(targetId = null) {
-  const navLinks = document.querySelectorAll('.navbar__link');
+  if (!DOMCache.navLinks) return;
   
   if (targetId) {
-    navLinks.forEach(link => {
+    DOMCache.navLinks.forEach(link => {
       link.classList.remove('active');
       if (link.getAttribute('href') === targetId) {
         link.classList.add('active');
       }
     });
   } else {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollPosition = window.scrollY + 100;
+    if (!DOMCache.sections) return;
     
+    const scrollPosition = window.scrollY + 100;
     let currentSection = '';
     
-    sections.forEach(section => {
+    DOMCache.sections.forEach(section => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.clientHeight;
       const sectionId = section.getAttribute('id');
@@ -332,7 +367,7 @@ function updateActiveNavLink(targetId = null) {
       }
     });
     
-    navLinks.forEach(link => {
+    DOMCache.navLinks.forEach(link => {
       link.classList.remove('active');
       if (link.getAttribute('href') === `#${currentSection}`) {
         link.classList.add('active');
@@ -398,13 +433,12 @@ function initSkillAnimations() {
 }
 
 function animateSkillBars() {
-  const skillProgressBars = DOMCache.skillProgressBars;
+  if (!DOMCache.skillProgressBars) return;
   
-  if (!skillProgressBars) return;
-  
-  skillProgressBars.forEach((bar, index) => {
+  DOMCache.skillProgressBars.forEach((bar, index) => {
     setTimeout(() => {
       const level = bar.getAttribute('data-level');
+      // Animar via JavaScript
       bar.style.width = `${level}%`;
       bar.style.transition = `width 1.5s ease-out ${index * 0.1}s`;
     }, index * CONFIG.skillAnimationDelay);
@@ -435,6 +469,10 @@ function initPortfolioFilter() {
           Analytics.trackEvent('portfolio', 'filter', filter);
         });
       });
+      
+      // Marcar o botão "Todos" como ativo inicialmente
+      const allButton = document.querySelector('.filter-btn[data-filter="all"]');
+      if (allButton) allButton.classList.add('active');
     }
     
     // Garantir que todos os itens sejam exibidos por padrão ao carregar a página
@@ -546,7 +584,7 @@ function validateField(e) {
   let isValid = true;
   let message = '';
   
-  field.classList.remove('error');
+  field.classList.remove('error', 'success');
   
   if (field.required && !value) {
     isValid = false;
@@ -557,6 +595,12 @@ function validateField(e) {
       isValid = false;
       message = 'Email inválido';
     }
+  } else if (field.type === 'tel' && value) {
+    const phoneRegex = /^[\d\s\-\(\)]{10,}$/;
+    if (!phoneRegex.test(value)) {
+      isValid = false;
+      message = 'Telefone inválido';
+    }
   } else if (field.name === 'message' && value.length < 10) {
     isValid = false;
     message = 'Mensagem muito curta (mínimo 10 caracteres)';
@@ -566,6 +610,7 @@ function validateField(e) {
     field.classList.add('error');
     showFieldError(field, message);
   } else {
+    field.classList.add('success');
     clearFieldError({ target: field });
   }
   
@@ -585,7 +630,7 @@ function showFieldError(field, message) {
 
 function clearFieldError(e) {
   const field = e.target;
-  field.classList.remove('error');
+  field.classList.remove('error', 'success');
   const errorElement = field.parentNode.querySelector('.error-message');
   if (errorElement) errorElement.remove();
 }
@@ -626,7 +671,7 @@ function showNotification(message, type = 'info') {
     color: white;
     border-radius: 4px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: var(--z-notification, 3000);
+    z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -634,6 +679,23 @@ function showNotification(message, type = 'info') {
     max-width: 400px;
     animation: slideInRight 0.3s ease;
   `;
+  
+  // Adicionar animações CSS se não existirem
+  if (!document.querySelector('#notification-styles')) {
+    const style = document.createElement('style');
+    style.id = 'notification-styles';
+    style.textContent = `
+      @keyframes slideInRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
   
   // Botão de fechar
   const closeBtn = notification.querySelector('.notification__close');
@@ -658,23 +720,6 @@ function showNotification(message, type = 'info') {
   
   // Adicionar ao body
   document.body.appendChild(notification);
-  
-  // Adicionar animações CSS se não existirem
-  if (!document.querySelector('#notification-styles')) {
-    const style = document.createElement('style');
-    style.id = 'notification-styles';
-    style.textContent = `
-      @keyframes slideInRight {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-      }
-      @keyframes slideOutRight {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(100%); opacity: 0; }
-      }
-    `;
-    document.head.appendChild(style);
-  }
   
   // Remover automaticamente após 5 segundos
   const autoRemoveTimeout = setTimeout(() => {
@@ -764,9 +809,9 @@ function initAnimationsOnScroll() {
 // ANIMAÇÕES DO HERO
 // ============================================================================
 function animateHeroElements() {
-  const heroElements = document.querySelectorAll('.hero__greeting, .hero__name, .hero__title, .hero__description, .hero__buttons, .hero__social');
+  if (!DOMCache.heroElements) return;
   
-  heroElements.forEach((element, index) => {
+  DOMCache.heroElements.forEach((element, index) => {
     element.style.opacity = '0';
     element.style.transform = 'translateY(20px)';
     element.style.transition = `all 0.6s ease ${index * 0.1}s`;
@@ -794,6 +839,11 @@ function initTypingEffect() {
   const heroTitle = document.querySelector('.hero__title');
   if (!heroTitle) return;
   
+  // Verificar se é mobile e pular animação se necessário
+  if (window.innerWidth <= CONFIG.breakpoints.mobile) {
+    return; // Não animar em mobile para melhor performance
+  }
+  
   const originalText = heroTitle.textContent;
   heroTitle.textContent = '';
   
@@ -814,6 +864,11 @@ function initTypingEffect() {
       heroTitle.insertBefore(charSpan, cursor);
       i++;
       setTimeout(typeWriter, 50);
+    } else {
+      // Remover cursor após terminar
+      setTimeout(() => {
+        cursor.remove();
+      }, 1000);
     }
   }
   
@@ -890,32 +945,6 @@ function trackImportantInteractions() {
       Analytics.trackEvent('download', 'file', filename);
     });
   });
-}
-
-// ============================================================================
-// CARREGAMENTO DE FONTES
-// ============================================================================
-function loadFonts() {
-  try {
-    // Carregar fontes do Google Fonts com preload para performance
-    const preloadLink = document.createElement('link');
-    preloadLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600;700&display=swap';
-    preloadLink.rel = 'preload';
-    preloadLink.as = 'style';
-    preloadLink.crossOrigin = 'anonymous';
-    document.head.appendChild(preloadLink);
-    
-    // Link principal das fontes
-    const link = document.createElement('link');
-    link.href = preloadLink.href;
-    link.rel = 'stylesheet';
-    link.crossOrigin = 'anonymous';
-    document.head.appendChild(link);
-    
-    Logger.info('Fontes carregadas');
-  } catch (error) {
-    Logger.error('Erro ao carregar fontes', error);
-  }
 }
 
 // ============================================================================
@@ -997,3 +1026,13 @@ if (typeof window !== 'undefined') {
   
   Logger.info('PortfolioApp disponível no console como window.PortfolioApp');
 }
+// ============================================================================
+// BOTÃO DE DOWNLOAD DO CURRÍCULO
+// ============================================================================
+document.getElementById('btn btn--primar').addEventListener('click', function() {
+  // Cria um link temporário
+  const link = document.createElement('a');
+  link.href = 'C:\\Users\\Maykon\\Documents\\a\\static\\assets\\Curriculo.pdf';
+  link.download = 'Maykon_Curriculo.pdf'; // Nome do arquivo ao baixar
+  link.click(); // Simula o clique
+});
