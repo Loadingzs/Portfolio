@@ -1,8 +1,3 @@
-# 🎨 **Versão Final do README com Suas Imagens**
-
-Aqui está o README completo com suas imagens incorporadas corretamente:
-
----
 
 # 🎨 Portfólio Maykon Dias - README Profissional
 
