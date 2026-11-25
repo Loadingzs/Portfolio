@@ -1026,13 +1026,3 @@ if (typeof window !== 'undefined') {
   
   Logger.info('PortfolioApp disponível no console como window.PortfolioApp');
 }
-// ============================================================================
-// BOTÃO DE DOWNLOAD DO CURRÍCULO
-// ============================================================================
-document.getElementById('btn btn--primar').addEventListener('click', function() {
-  // Cria um link temporário
-  const link = document.createElement('a');
-  link.href = 'C:\\Users\\Maykon\\Documents\\a\\static\\assets\\Curriculo.pdf';
-  link.download = 'Maykon_Curriculo.pdf'; // Nome do arquivo ao baixar
-  link.click(); // Simula o clique
-});

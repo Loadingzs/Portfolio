@@ -77,6 +77,15 @@ Preserve as expressões `url_for('static', ...)` do template para servir os arqu
 3. Teste o menu em uma janela estreita e os filtros dos projetos.
 4. Preencha o formulário e confira as validações; a confirmação é demonstrativa.
 
+Com o ambiente Python ativo e as dependências instaladas, execute os testes de regressão:
+
+```bash
+python -m unittest discover -s tests -p "test_*.py" -v
+node --test tests/script.test.cjs
+```
+
+Os testes Python verificam o link nativo do currículo, o PDF servido pelo Flask e a URL com prefixo de aplicação. O teste JavaScript usa o módulo de testes do Node.js (18 ou superior), sem pacotes adicionais, para verificar o carregamento do script sem um botão com ID específico. Não há envio de e-mails nem servidor público durante os testes.
+
 ## Próximos passos
 
 - Implementar o envio real do formulário.
